@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mozlog-k8s-stackdriver
+  labels:
+    app: jasonthomas
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 50
+  template:
+    metadata:
+      labels:
+        app: mozlog-k8s-stackdriver
+        role: generator
+        tier: backend
+    spec:
+      containers:
+      - name: master
+        image: docker.io/jasonthomas/mozlog-k8s-stackdriver:latest
+        resources:
+          requests:
+            cpu: 500m
+          limits:
+            cpu: 1500m
